@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Car Price Prediction - Predict used car prices using machine learning regression models." />
+    <meta name="author" content="CodeAlpha" />
+    <meta name="theme-color" content="#0f172a" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Car Price Predictor</title>
+  </head>
+  <body>
+    <header class="hero"><div class="hero-inner">
+      <div class="hero-text"><h1>🚗 Car Price Predictor</h1><p>Predict used car selling prices using regression models &amp; real-world features</p></div>
+      <div class="hero-chips"><span class="chip chip-1">🔧 Feature Engineering</span><span class="chip chip-2">📈 Regression</span><span class="chip chip-3">🎯 ML Prediction</span></div>
+    </div></header>
+    <div class="container">
+      <nav class="tabs">
+        <button class="tab-btn active" data-tab="predict" id="tab-predict"><span class="tab-icon">💰</span> Predict</button>
+        <button class="tab-btn" data-tab="explore" id="tab-explore"><span class="tab-icon">📊</span> Explore Data</button>
+        <button class="tab-btn" data-tab="metrics" id="tab-metrics"><span class="tab-icon">⭐</span> Model Performance</button>
+        <button class="tab-btn" data-tab="about" id="tab-about"><span class="tab-icon">ℹ️</span> About</button>
+      </nav>
+      <!-- Predict -->
+      <section class="tab-content active" id="panel-predict"><div class="predict-layout">
+        <div class="card"><h2>🚘 Enter Car Details</h2>
+          <form id="predict-form"><div class="form-grid">
+            <div class="form-field"><label for="brand">Brand</label><select id="brand" required></select></div>
+            <div class="form-field"><label for="year">Year</label><input type="number" id="year" min="2000" max="2025" value="2020" required /><small>Mfg. year</small></div>
+            <div class="form-field"><label for="present_price">Present Price (₹ Lakh)</label><input type="number" id="present_price" step="0.1" min="0" max="100" value="8.5" required /><small>Current showroom price</small></div>
+            <div class="form-field"><label for="kms_driven">Kms Driven</label><input type="number" id="kms_driven" min="0" max="500000" value="35000" required /><small>Odometer reading</small></div>
+            <div class="form-field"><label for="fuel_type">Fuel Type</label><select id="fuel_type"><option>Petrol</option><option>Diesel</option><option>CNG</option></select></div>
+            <div class="form-field"><label for="seller_type">Seller Type</label><select id="seller_type"><option>Dealer</option><option>Individual</option></select></div>
+            <div class="form-field"><label for="transmission">Transmission</label><select id="transmission"><option>Manual</option><option>Automatic</option></select></div>
+            <div class="form-field"><label for="owner">Previous Owners</label><select id="owner"><option value="0">0 (First Owner)</option><option value="1">1</option><option value="2">2</option><option value="3">3+</option></select></div>
+          </div><div class="form-buttons"><button type="submit" class="btn btn-primary" id="predict-btn">💰 Predict Price</button><button type="button" class="btn btn-secondary" id="random-btn">🎲 Random Car</button></div></form>
+        </div>
+        <div class="card result-card" id="result-card">
+          <div id="result-placeholder"><div class="placeholder-icon">💰</div><p class="placeholder-text">Fill in car details and click <strong>Predict Price</strong></p></div>
+          <div id="result-content" class="hidden">
+            <div class="price-display"><span class="price-label">Estimated Selling Price</span><h2 id="result-price">--</h2><span class="result-badge" id="result-model">--</span></div>
+            <div class="input-summary"><h3>Car Details</h3><div id="result-features"></div></div>
+          </div>
+        </div>
+      </div></section>
+      <!-- Explore -->
+      <section class="tab-content" id="panel-explore">
+        <div class="stats-row" id="brand-stats"></div>
+        <div class="card"><div class="table-controls"><h2>📋 Dataset</h2><div class="filter-group" id="fuel-filters">
+          <button class="filter-btn active" data-filter="all">All</button><button class="filter-btn f-petrol" data-filter="Petrol">Petrol</button><button class="filter-btn f-diesel" data-filter="Diesel">Diesel</button><button class="filter-btn f-cng" data-filter="CNG">CNG</button>
+        </div></div><div class="table-wrapper"><table id="data-table"><thead><tr><th>#</th><th>Brand</th><th>Year</th><th>Present ₹</th><th>Kms</th><th>Fuel</th><th>Trans</th><th>Selling ₹</th></tr></thead><tbody id="data-tbody"></tbody></table></div></div>
+      </section>
+      <!-- Metrics -->
+      <section class="tab-content" id="panel-metrics">
+        <div class="summary-cards" id="metrics-overview"></div>
+        <div class="models-grid" id="metrics-details"></div>
+        <div class="card" id="feat-imp-card" style="display:none"><h2>📊 Feature Importances</h2><div id="feat-importances"></div></div>
+      </section>
+      <!-- About -->
+      <section class="tab-content" id="panel-about"><div class="about-grid">
+        <div class="card about-card"><div class="about-icon">📊</div><h2>The Dataset</h2><p>Synthetic car dataset with <strong>600 samples</strong> across 15 brands. Features include brand, year, showroom price, mileage, fuel type, transmission, seller type, and ownership history.</p></div>
+        <div class="card about-card"><div class="about-icon">⚙️</div><h2>How It Works</h2><p>We train <strong>5 regression models</strong> (Linear, Ridge, Random Forest, Gradient Boosting, SVR), evaluate with R², MAE, RMSE, and 5-fold cross-validation to pick the best.</p></div>
+        <div class="card about-card"><div class="about-icon">🎯</div><h2>Key Concepts</h2><p><strong>Regression</strong> predicts continuous values (price) from features. We encode categorical variables, scale features, and measure error to evaluate model quality.</p></div>
+        <div class="card about-card"><div class="about-icon">💻</div><h2>Tech Stack</h2><p><strong>Backend:</strong> Python, Flask, Scikit-learn<br /><strong>Frontend:</strong> HTML, CSS, JS<br /><strong>Models:</strong> RF, GBR, SVR, Linear, Ridge</p></div>
+      </div></section>
+      <footer class="footer"><p>Car Price Prediction · CodeAlpha ML Task</p></footer>
+    </div>
+    <div id="toast-container"></div>
+    <script src="script.js"></script>
+  </body>
+</html>

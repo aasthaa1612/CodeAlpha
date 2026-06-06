@@ -1,0 +1,101 @@
+{
+  "best_model": "Gradient Boosting",
+  "best_r2": 96.43,
+  "all_results": {
+    "Linear Regression": {
+      "r2": 35.65,
+      "mae": 2.97,
+      "rmse": 4.62,
+      "cv_mean": 28.78,
+      "cv_std": 19.03
+    },
+    "Ridge Regression": {
+      "r2": 35.67,
+      "mae": 2.96,
+      "rmse": 4.62,
+      "cv_mean": 28.85,
+      "cv_std": 18.89
+    },
+    "Random Forest": {
+      "r2": 93.85,
+      "mae": 0.55,
+      "rmse": 1.43,
+      "cv_mean": 95.63,
+      "cv_std": 1.28
+    },
+    "Gradient Boosting": {
+      "r2": 96.43,
+      "mae": 0.45,
+      "rmse": 1.09,
+      "cv_mean": 96.17,
+      "cv_std": 1.18
+    },
+    "SVR": {
+      "r2": 24.79,
+      "mae": 1.71,
+      "rmse": 4.99,
+      "cv_mean": 27.27,
+      "cv_std": 13.01
+    }
+  },
+  "feature_names": [
+    "brand",
+    "year",
+    "present_price",
+    "kms_driven",
+    "fuel_type",
+    "seller_type",
+    "transmission",
+    "owner"
+  ],
+  "cat_cols": [
+    "fuel_type",
+    "seller_type",
+    "transmission",
+    "brand"
+  ],
+  "num_cols": [
+    "year",
+    "present_price",
+    "kms_driven",
+    "owner"
+  ],
+  "feature_importances": {
+    "brand": 0.0001,
+    "year": 0.4958,
+    "present_price": 0.4929,
+    "kms_driven": 0.0072,
+    "fuel_type": 0.0008,
+    "seller_type": 0.0007,
+    "transmission": 0.0016,
+    "owner": 0.0009
+  },
+  "brands": [
+    "Maruti",
+    "Hyundai",
+    "Honda",
+    "Toyota",
+    "Ford",
+    "Mahindra",
+    "Tata",
+    "Chevrolet",
+    "Renault",
+    "Volkswagen",
+    "BMW",
+    "Audi",
+    "Mercedes",
+    "Kia",
+    "Nissan"
+  ],
+  "dataset_info": {
+    "total_samples": 600,
+    "train_samples": 480,
+    "test_samples": 120,
+    "num_features": 8,
+    "price_range": [
+      0.5,
+      49.22
+    ],
+    "avg_price": 2.85
+  }
+}
