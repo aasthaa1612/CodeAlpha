@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Iris Flower Classification - Predict iris species using machine learning." />
+    <meta name="author" content="CodeAlpha" />
+    <meta name="theme-color" content="#1e1b4b" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Iris Flower Classifier</title>
+  </head>
+  <body>
+    <header class="hero"><div class="hero-inner">
+      <div class="hero-text"><h1>🌸 Iris Flower Classifier</h1><p>Predict iris species from petal &amp; sepal measurements using machine learning</p></div>
+      <div class="hero-flowers"><span class="flower-chip setosa">🌿 Setosa</span><span class="flower-chip versicolor">💜 Versicolor</span><span class="flower-chip virginica">🧡 Virginica</span></div>
+    </div></header>
+    <div class="container">
+      <nav class="tabs">
+        <button class="tab-btn active" data-tab="predict" id="tab-predict"><span class="tab-icon">🎯</span> Predict</button>
+        <button class="tab-btn" data-tab="explore" id="tab-explore"><span class="tab-icon">📊</span> Explore Dataset</button>
+        <button class="tab-btn" data-tab="metrics" id="tab-metrics"><span class="tab-icon">⭐</span> Model Performance</button>
+        <button class="tab-btn" data-tab="about" id="tab-about"><span class="tab-icon">ℹ️</span> About</button>
+      </nav>
+      <section class="tab-content active" id="panel-predict"><div class="predict-layout">
+        <div class="card"><div class="card-header"><h2>📐 Enter Measurements</h2></div>
+          <form id="predict-form"><div class="form-grid">
+            <div class="form-field"><label for="sepal_length">Sepal Length (cm)</label><input type="number" id="sepal_length" step="0.1" min="0" max="10" value="5.1" required /><small>Typical: 4.3 – 7.9</small></div>
+            <div class="form-field"><label for="sepal_width">Sepal Width (cm)</label><input type="number" id="sepal_width" step="0.1" min="0" max="10" value="3.5" required /><small>Typical: 2.0 – 4.4</small></div>
+            <div class="form-field"><label for="petal_length">Petal Length (cm)</label><input type="number" id="petal_length" step="0.1" min="0" max="10" value="1.4" required /><small>Typical: 1.0 – 6.9</small></div>
+            <div class="form-field"><label for="petal_width">Petal Width (cm)</label><input type="number" id="petal_width" step="0.1" min="0" max="10" value="0.2" required /><small>Typical: 0.1 – 2.5</small></div>
+          </div><div class="form-buttons"><button type="submit" class="btn btn-primary" id="predict-btn">✨ Classify</button><button type="button" class="btn btn-secondary" id="random-btn">🎲 Random Sample</button></div></form>
+        </div>
+        <div class="card result-card-wrapper" id="result-card">
+          <div id="result-placeholder"><div class="placeholder-icon">?</div><p class="placeholder-text">Enter measurements and click <strong>Classify</strong> to see results.</p></div>
+          <div id="result-content" class="hidden">
+            <div class="result-top" id="result-top"><h2 id="result-species-name">--</h2><span class="result-badge" id="result-model-badge">--</span></div>
+            <div class="prob-section"><h3>Confidence</h3><div id="probabilities"></div></div>
+            <div class="input-summary"><h3>Your Input</h3><div id="result-features"></div></div>
+          </div>
+        </div>
+      </div></section>
+      <section class="tab-content" id="panel-explore">
+        <div class="stats-row" id="explore-stats"></div>
+        <div class="card"><div class="table-controls"><h2>📋 Sample Data</h2><div class="filter-group">
+          <button class="filter-btn active" data-filter="all">All</button><button class="filter-btn filter-setosa" data-filter="setosa">Setosa</button><button class="filter-btn filter-versicolor" data-filter="versicolor">Versicolor</button><button class="filter-btn filter-virginica" data-filter="virginica">Virginica</button>
+        </div></div><div class="table-wrapper"><table id="data-table"><thead><tr><th>#</th><th>Sepal Length</th><th>Sepal Width</th><th>Petal Length</th><th>Petal Width</th><th>Species</th></tr></thead><tbody id="data-tbody"></tbody></table></div></div>
+      </section>
+      <section class="tab-content" id="panel-metrics">
+        <div class="summary-cards" id="metrics-overview"></div><div class="models-grid" id="metrics-details"></div>
+        <div class="card"><h2>🔢 Confusion Matrix <small>(Best Model)</small></h2><div id="confusion-matrix"></div></div>
+      </section>
+      <section class="tab-content" id="panel-about"><div class="about-grid">
+        <div class="card about-card"><div class="about-icon">📊</div><h2>The Dataset</h2><p>The Iris dataset was introduced by Ronald Fisher in 1936. It contains <strong>150 samples</strong> from three species: <em>Setosa</em>, <em>Versicolor</em>, and <em>Virginica</em>. Each sample has four features measured in centimeters.</p></div>
+        <div class="card about-card"><div class="about-icon">⚙️</div><h2>How It Works</h2><p>We train <strong>5 classifiers</strong> (Random Forest, SVM, KNN, Logistic Regression, Gradient Boosting), evaluate each on an 80/20 split with 5-fold cross-validation, and pick the best performer.</p></div>
+        <div class="card about-card"><div class="about-icon">🎯</div><h2>Key Concepts</h2><p><strong>Classification</strong> is supervised learning where a model predicts categories from labeled data. We measure quality with accuracy, precision, recall, F1-score, and confusion matrices.</p></div>
+        <div class="card about-card"><div class="about-icon">💻</div><h2>Tech Stack</h2><p><strong>Backend:</strong> Python, Flask, Scikit-learn<br /><strong>Frontend:</strong> HTML, CSS, JS<br /><strong>Dataset:</strong> <code>sklearn.datasets.load_iris()</code></p></div>
+      </div></section>
+      <footer class="footer"><p>Iris Flower Classification · CodeAlpha ML Task</p></footer>
+    </div>
+    <div id="toast-container"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
