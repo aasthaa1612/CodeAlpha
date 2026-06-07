@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+venv/
+.venv/
+
+# Saved model (optional - remove if you want to include it)
+# backend/saved_model/
+
+# OS
+.DS_Store
+Thumbs.db
